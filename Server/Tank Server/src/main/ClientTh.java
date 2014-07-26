@@ -19,14 +19,14 @@ public class ClientTh extends Thread{
     String ip;
     
     ClientTh(Socket socket) {
-    	System.out.println("Hoþ geldin paþam");
+    	//New client up.
     	this.socket = socket;
      
     }
     
 	@Override
 	public void run() {
-		System.out.println("Baðlandým horay");
+		System.out.println("New client's thread is running up.");
 		   try {
 				input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			    output = new PrintStream(socket.getOutputStream());
@@ -44,8 +44,6 @@ public class ClientTh extends Thread{
 					 if(nick == null) {
 						 nick = response;
 					 
-						 
-						 
 					 }
 					 if(response.equals("*createRoom*")) {
 						 server.rooms.add(new Room(nick,ip));

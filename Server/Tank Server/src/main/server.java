@@ -23,7 +23,7 @@ public class server {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Server running...");
+		System.out.println("Server's running...");
 		while(true){
 		    try {
 		    	

@@ -14,6 +14,6 @@ public class Room {
 		this.roomName = creatorName+"'s Room";
 		this.playersName.add(creatorName);
 		this.playersIP.add(creatorIP);
-		System.out.println("Oda kuruldu/"+ creatorName + "/creatorIP/"+creatorIP);
+		System.out.println("New room is created./"+ creatorName + "/creatorIP/"+creatorIP);
 	}
 }
