@@ -18,6 +18,7 @@ import screen.screenInterface;
 import entities.Entity;
 import entities.tank;
 
+
 @SuppressWarnings("serial")
 public class game extends JPanel implements Runnable,ActionListener {
 	
@@ -64,7 +65,6 @@ public class game extends JPanel implements Runnable,ActionListener {
 			menuScreen.draw(g2);
     }
 	
-	@Override
 	public void run() {
 		int fps = 0;
 
@@ -117,12 +117,10 @@ public class game extends JPanel implements Runnable,ActionListener {
 	     }
 	    
 	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	 	System.out.println("görkem");
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
+
 }
 

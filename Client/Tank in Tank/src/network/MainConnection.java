@@ -68,7 +68,7 @@ public class MainConnection extends Thread{
 			}
 
 			if (status == 100) {
-				System.out.println("baðlanamadýk aga");
+				System.out.println("Connection problem.");
 				connect = false;
 				game.connectionStatus = status;
 

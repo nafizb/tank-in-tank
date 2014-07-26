@@ -24,7 +24,7 @@ public class Game extends screenInterface{
 	      
 	      g.setColor(new Color(0xFFFFFF));
 	      g.drawOval((int)(game.entities.get(0).x-1), (int)(game.entities.get(0).y-1), 2, 2);
-	      g.drawString("Fipies: "+ game.showFps, 740, 565);
+	      g.drawString("FPS: "+ game.showFps, 740, 565);
 	}
 
 }
