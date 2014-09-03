@@ -6,15 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.util.Iterator;
 
-import entities.Entity;
-
+import network.Room;
 import main.game;
 
-public class Menu extends screenInterface{
+public class Menu{
 	
 	public int roomSelectionPos = 1;
 
-	@Override
+	
 	public void draw(Graphics2D g) {
 		
 		g.setColor(new Color(0x00FF44));
@@ -44,18 +43,19 @@ public class Menu extends screenInterface{
 		
 		g.drawString("Press 'C' to create room. Use F5 to refresh.", 235, 440);
 
-		Iterator roomIter = game.network.roomNames.iterator();
+		Iterator<Room> roomIter = game.network.roomList.iterator();
 		
-		
+		//Draw room list
 		int i = 0;
 		while(roomIter.hasNext()) {
 			if(i+1 == roomSelectionPos) {
+				//Draw white transparent rectangle on hover element.
 				Color transRectColor = new Color(255, 255,255, 98 );
 				g.setColor(transRectColor);
 				g.fillRect(255, 218+i*20, 120, 15);
 			}
 			g.setColor(Color.black);
-			String roomName = (String) roomIter.next();
+			String roomName = (String) roomIter.next().name;
 			g.drawString(roomName, 260, 230+i*20);
 			i++;
 		}

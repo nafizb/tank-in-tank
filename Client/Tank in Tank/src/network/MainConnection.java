@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import main.game;
 
@@ -25,7 +24,7 @@ public class MainConnection extends Thread{
     
     boolean connect = false;
     
-    public Collection<String> roomNames = new ArrayList<String>();
+    public Collection<Room> roomList = new ArrayList<Room>();
     
    // public Collection<Clients>
 	public MainConnection() {
@@ -43,7 +42,7 @@ public class MainConnection extends Thread{
 
 		while(true) {
 			try {
-				sleep(100);
+				sleep(200);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -64,10 +63,10 @@ public class MainConnection extends Thread{
 				status = 100;
 			} catch (IOException e) {
 				System.err.println(serverIP + " disconnected");
-				status = 100;
+				status = 101;
 			}
 
-			if (status == 100) {
+			if (status >= 100) {
 				System.out.println("Connection problem.");
 				connect = false;
 				game.connectionStatus = status;
@@ -81,7 +80,7 @@ public class MainConnection extends Thread{
 			
 			
 		}
-		//System.out.println("o");
+
 		//main process
 		
 		output.println(game.nick);
@@ -92,16 +91,40 @@ public class MainConnection extends Thread{
 		output.println("*createRoom*");
 	}
 	public void getRoomList() {
-		roomNames.removeAll(roomNames);
+		roomList.removeAll(roomList);
 
 		output.println("*roomList*");
 		try {
 			String list = input.readLine();
-			for(String item:list.split("\\|\\|"))
-				roomNames.add(item);
+			//for(String item:list.split("\\|\\|"))
+			for(String item:list.split(String.valueOf(Character.toChars(036)))) {
+				if(item.equals("")) continue;
+				
+				String[] roomString = item.split(String.valueOf(Character.toChars(037)));
+				
+				roomList.add(new Room(roomString[0], Integer.valueOf(roomString[1])));
+			}
+				
 		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void connectRoom(int roomID) {
+		output.println("*joinRoom:"+roomID);
+		String response = readLine();
+		
+		System.out.println("Room IP: "+response);
+	}
+
+	public String readLine() {
+		try {
+			return input.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 }

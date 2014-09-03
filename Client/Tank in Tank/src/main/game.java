@@ -13,7 +13,6 @@ import network.MainConnection;
 
 import screen.Game;
 import screen.Menu;
-import screen.screenInterface;
 
 import entities.Entity;
 import entities.tank;
@@ -32,15 +31,25 @@ public class game extends JPanel implements Runnable,ActionListener {
 
 	public static boolean[] keys = new boolean[300];
 	
-	screenInterface gameScreen = new Game();
-	static public screenInterface menuScreen = new Menu();
+	Game gameScreen = new Game();
+	static public Menu menuScreen = new Menu();
 	
 	static public int port = 7283;
 
+	/*
+	 * connectionSatus
+	 * 0 = There is no connection to neither server nor room.
+	 * 1 = Connecting server.
+	 * 2 = Connected server.
+	 * 
+	 * 100 = Unknown host.
+	 * 101 = Disconnected from server.
+	 */
 	static public int connectionStatus = 0;
-
+	
 	
 	public static MainConnection network = new MainConnection();
+	
 	game() {
 		
 		//entities[0] = new tank(100,100);

@@ -7,9 +7,9 @@ import main.game;
 
 import entities.Entity;
 
-public class Game extends screenInterface{
+public class Game{
 
-	@Override
+	
 	public void draw(Graphics2D g) {
 
 
