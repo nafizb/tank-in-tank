@@ -13,7 +13,10 @@ public class server {
     ClientTh clientSocket = null;
 
     Collection<ClientTh> clients = new ArrayList<ClientTh>();
-    public static Collection<Room> rooms = new ArrayList<Room>();
+    public static ArrayList<Room> rooms = new ArrayList<Room>();
+    
+    static int roomCounter = 10;
+
     
 	server() {
 		
@@ -35,7 +38,6 @@ public class server {
 			}
 		    catch (IOException e) {System.out.println(e);}
 		}
-		
 		
 	}
 }
